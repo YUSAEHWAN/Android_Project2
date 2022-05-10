@@ -29,13 +29,12 @@ public class MonthAdapter extends BaseAdapter{
         }
         TextView textview = convertView.findViewById(R.id.date);
         int date = calendarItems.get(position).getDate(); // 날짜를 받아옴
-        if (date !=0) {                                  // 받아온 날짜가 0이 아니라면
+        if (date != 0) {                                  // 받아온 날짜가 0이 아니라면
             textview.setText(date + "");                 // 받아온 날짜를 텍스트로 설정
-            if (date == Selected_Date) {   // 선택된 날짜라면
+            if (date == Selected_Date)  // 선택된 날짜라면
                 convertView.setBackgroundColor(Color.CYAN); // view 배경을 CYAN로 변경
-            } else {                                        // 날짜가 선택되지 않았다면
+            else                                     // 날짜가 선택되지 않았다면
                 convertView.setBackgroundColor(Color.WHITE); // view 배경을 WHITE로 변경
-            }
         } else {                   // 받아온 날짜가 0이면
             textview.setText("");  // 텍스트를 빈칸으로 설정
             convertView.setEnabled(false);

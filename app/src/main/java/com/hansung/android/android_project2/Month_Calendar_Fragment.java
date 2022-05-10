@@ -50,4 +50,27 @@ public class Month_Calendar_Fragment extends Fragment {
         }
     }
 
+    // 달력의 날짜를 채워넣기 위한 계산 메소드
+    private ArrayList<CalendarItem> calculate(int year, int month) {
+        ArrayList<CalendarItem> items = new ArrayList<>();
+
+        Calendar cal = Calendar.getInstance(); // 날자를 계산하기 위해 Calendar 인스턴스를 불러옴
+        cal.set(year, month, 1); // 날짜를 1일로
+
+        int startDay = cal.get(Calendar.DAY_OF_WEEK); // 현재 달 1일의 요일 (1: 일요일, . . . 7: 토요일)
+        int lastDay= cal.getActualMaximum(Calendar.DATE); // 달의 마지막 날짜를 구함
+
+        int cnt = 1;
+
+        for (int i = 0; i < items.size(); i++) { // 리스트 초기화
+            items.add(new CalendarItem(0));
+        }
+        for (int i = startDay - 1; i < startDay - 1 + lastDay; i++) { // 각 시작위치와 마지막 날을 계산하여 지정
+            CalendarItem item = new CalendarItem(cnt);
+            cnt++;
+            items.add(item);
+        }
+        return items;
+    }
+
 }

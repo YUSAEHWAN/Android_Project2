@@ -32,7 +32,7 @@ public class Month_Calendar_Fragment extends Fragment {
     public static Month_Calendar_Fragment newInstance(int year, int month, int date) {
 
         Month_Calendar_Fragment fragment = new Month_Calendar_Fragment();
-        Bundle args = new Bundle();
+        Bundle args = new Bundle(); // 번들을 통해 값 전달
         args.putInt(ARG_PARAM1, year);
         args.putInt(ARG_PARAM2, month);
         args.putInt(ARG_PARAM3, date);

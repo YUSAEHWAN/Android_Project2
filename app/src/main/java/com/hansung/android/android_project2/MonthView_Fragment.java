@@ -29,7 +29,7 @@ public class MonthView_Fragment extends Fragment{
     // 프래그먼트로 인자들을 전달하기 위해 newInstance() 메소드 사용
     public static MonthView_Fragment newInstance(int param1, int param2, int param3) {
         MonthView_Fragment fragment = new MonthView_Fragment();
-        Bundle args = new Bundle();
+        Bundle args = new Bundle(); // 번들을 통해 값 전달
         args.putInt(ARG_PARAM1, param1);
         args.putInt(ARG_PARAM2, param2);
         args.putInt(ARG_PARAM3, param3);

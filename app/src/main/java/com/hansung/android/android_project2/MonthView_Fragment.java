@@ -46,4 +46,34 @@ public class MonthView_Fragment extends Fragment{
             mDate = getArguments().getInt(ARG_PARAM3); // 얻어온 인자를 mDate에 저장
         }
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_month_view, container, false);
+        vpPager = view.findViewById(R.id.vpPager);
+
+        Month_PagerAdapter monthPagerAdapter = new Month_PagerAdapter(this);
+        vpPager.setAdapter(monthPagerAdapter); // vpPager에 monthPagerAdapter를 연결
+
+        Calendar cal = Calendar.getInstance(); // Calendar 인스턴스를 받아와서
+        int curYear = cal.get(Calendar.YEAR); // 현재 년도를 구함
+        int curMonth = cal.get(Calendar.MONTH); // 현재 월을 구함
+
+        vpPager.setCurrentItem(24250); // 앱을 처음 시작했을 때 시작할 위치 지정
+
+        ActionBar actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionbar.setTitle(curYear + "년 " + (curMonth + 1) + "월"); // 드래그하기 전의 앱바 타이틀 지정
+
+        // vpPager 부분을 드래그 할 때 실행되는 메소드
+        vpPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                mYear = position / 12 + 1; // 페이지의 포지션에 12를 나눠 1을 더해서 년도를 계산
+                mMonth = position % 12 + 1; // 페이지의 포지션에 12를 나눠 나온 나머지에 1을 더해서 달을 계산
+                actionbar.setTitle(mYear + "년 " + mMonth + "월"); // 드래그 하고 난 후의 앱바 타이틀 지정
+            }
+        });
+        return view;
+    }
 }

@@ -49,4 +49,23 @@ public class MonthAdapter extends BaseAdapter{
 
         return convertView;
     }
+    // 선택된 날짜를 반환하는 메소드
+    public void set_Date_Selected(int date) {
+        Selected_Date = date;
+    }
+
+    @Override
+    public int getCount() {
+        return calendarItems.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return calendarItems.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }

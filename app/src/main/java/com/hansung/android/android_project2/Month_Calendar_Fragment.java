@@ -40,4 +40,14 @@ public class Month_Calendar_Fragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            toast_year = getArguments().getInt(ARG_PARAM1); // 얻어온 인자를 toast_year에 저장
+            toast_month = getArguments().getInt(ARG_PARAM2); // 얻어온 인자를 toast_month에 저장
+            mDate = getArguments().getInt(ARG_PARAM3); // 얻어온 인자를 mDate에 저장
+        }
+    }
+
 }

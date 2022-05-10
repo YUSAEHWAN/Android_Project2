@@ -73,4 +73,35 @@ public class Month_Calendar_Fragment extends Fragment {
         return items;
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_month_calendar, container, false);
+
+        ArrayList<CalendarItem> items = calculate(toast_year, toast_month); // 계산하여 나온 년도와 달을 리스트에 저장
+
+        monthView = view.findViewById(R.id.monthview); // id를 바탕으로 화면 레이아웃에 정의된 GridView 객체 로딩
+        adt = new MonthAdapter(getActivity(),items); // adt 객체 생성
+        monthView.setAdapter(adt);  // adt 객체를 GridView 객체에 연결
+        adt.set_Date_Selected(mDate); // 어댑터의 set_Date_Selected 메소드 호출
+
+        // 달력 클릭 이벤트를 처리하는 메소드 정의
+        monthView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int toast_date = ((CalendarItem) adt.getItem(position)).getDate();
+                adt.set_Date_Selected(toast_date); // 어댑터의 set_Date_Selected 메소드 호출
+                adt.notifyDataSetChanged();
+                Toast.makeText(getActivity(), toast_year + "." + (toast_month + 1) + "."
+                        + toast_date, Toast.LENGTH_SHORT).show();
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
 }
